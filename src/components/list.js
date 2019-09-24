@@ -8,7 +8,10 @@ export default class List extends React.Component {
   render() {
     return (
       <div>
-        <li>{this.props.tem}</li>
+        <li>
+          {this.props.tem}
+          <button onClick={this.props.onDelete}>X</button>
+        </li>
       </div>
     );
   }

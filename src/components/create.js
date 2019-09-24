@@ -14,8 +14,8 @@ export default class Create extends React.Component {
     let val = this.state.value;
     let arr = this.state.valArr;
     arr.push(arg);
-    this.setState({ valArr: arr });
-    console.log(arr);
+    this.setState({ valArr: arr, value: "" });
+    this.refs.someName.value = "";
   }
 
   handleChange(e) {
@@ -23,12 +23,28 @@ export default class Create extends React.Component {
     this.setState({ value: val });
   }
 
+  handleDelete(arg) {
+    let arr = this.state.valArr;
+    arr.splice(arg, 1);
+    this.setState({ valArr: arr });
+  }
+
   render() {
     let { valArr } = this.state;
-    let list = valArr.map((item, index) => <List key={index} tem={item} />);
+    let list = valArr.map((item, index) => (
+      <List
+        onDelete={this.handleDelete.bind(this, index)}
+        key={index}
+        tem={item}
+      />
+    ));
     return (
       <div>
-        <input type="text" onChange={this.handleChange.bind(this)} />
+        <input
+          ref="someName"
+          type="text"
+          onChange={this.handleChange.bind(this)}
+        />
         <button onClick={this.handleClick.bind(this, this.state.value)}>
           CREATE
         </button>
