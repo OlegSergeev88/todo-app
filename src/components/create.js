@@ -6,7 +6,8 @@ export default class Create extends React.Component {
     super(props);
     this.state = {
       value: "",
-      valArr: []
+      valArr: [],
+      result: false
     };
   }
 
@@ -33,9 +34,10 @@ export default class Create extends React.Component {
     let { valArr } = this.state;
     let list = valArr.map((item, index) => (
       <List
+        res={this.state.result}
         onDelete={this.handleDelete.bind(this, index)}
         key={index}
-        tem={item}
+        item={item}
       />
     ));
     return (
