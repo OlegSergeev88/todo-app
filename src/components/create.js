@@ -29,10 +29,19 @@ export default class Create extends React.Component {
     this.setState({ valArr: arr });
   }
 
+  handleEdit(arg) {
+    let elem = document.getElementsByClassName(arg);
+    console.log({ arg, elem });
+  }
+
   render() {
     let { valArr } = this.state;
     let list = valArr.map((item, index) => (
       <List
+        ref={index}
+        id={"x" + index}
+        className={"x" + index}
+        xx={this.handleEdit.bind(this)}
         handleResult={this.handleResult}
         res={this.state.result}
         onDelete={this.handleDelete.bind(this, index)}
